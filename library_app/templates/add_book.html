@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>添加书籍</h1>
+    <form method="post">
+        <label>书名: <input type="text" name="title"></label><br>
+        <label>作者: <input type="text" name="author"></label><br>
+        <input type="submit" value="添加">
+    </form>
+</body>
+</html>
