@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>Library Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>图书管理系统</h1>
+    {% if role != 'guest' %}
+        <p>当前用户: {{ session['username'] }} ({{ role }}) | <a href="{{ url_for('logout') }}">退出</a></p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">登录</a></p>
+    {% endif %}
+    {% if role == 'admin' %}
+        <p><a href="{{ url_for('add_book') }}">添加书籍</a></p>
+    {% endif %}
+    <h2>书籍列表</h2>
+    <ul>
+    {% for book in books %}
+        <li>{{ book.title }} - {{ book.author }}
+        {% if role == 'user' %}
+            <a href="{{ url_for('borrow', book_id=book.id) }}">借阅</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
